@@ -1,0 +1,71 @@
+specVersion: 0.0.5
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: XY3
+    network: mainnet
+    source:
+      address: "0xC28F7Ee92Cd6619e8eEC6A70923079fBAFb86196"
+      abi: XY3
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - AdminFeeReceiverUpdated
+        - AdminFeeUpdated
+        - ERC20Permit
+        - ERC721Permit
+        - LoanLiquidated
+        - LoanRepaid
+        - LoanStarted
+        - MaxBorrowDurationUpdated
+        - MinBorrowDurationUpdated
+        - NonceCancelled
+        - Paused
+        - RoleAdminChanged
+        - RoleGranted
+        - RoleRevoked
+        - TimeStampCancelled
+        - Unpaused
+        - UpdateStatus
+      abis:
+        - name: XY3
+          file: ./abis/XY3.json
+      eventHandlers:
+        - event: AdminFeeReceiverUpdated(address)
+          handler: handleAdminFeeReceiverUpdated
+        - event: AdminFeeUpdated(uint16)
+          handler: handleAdminFeeUpdated
+        - event: ERC20Permit(indexed address,bool)
+          handler: handleERC20Permit
+        - event: ERC721Permit(indexed address,bool)
+          handler: handleERC721Permit
+        - event: LoanLiquidated(indexed uint32,indexed address,indexed address,uint256,uint256,uint256,uint256,address)
+          handler: handleLoanLiquidated
+        - event: LoanRepaid(indexed uint32,indexed address,indexed address,uint256,uint256,uint256,uint256,address,address)
+          handler: handleLoanRepaid
+        - event: LoanStarted(indexed uint32,indexed address,indexed address,uint256,(uint256,uint256,uint256,address,uint32,uint16,uint64,address,address,bool))
+          handler: handleLoanStarted
+        - event: MaxBorrowDurationUpdated(uint256)
+          handler: handleMaxBorrowDurationUpdated
+        - event: MinBorrowDurationUpdated(uint256)
+          handler: handleMinBorrowDurationUpdated
+        - event: NonceCancelled(address,uint256)
+          handler: handleNonceCancelled
+        - event: Paused(address)
+          handler: handlePaused
+        - event: RoleAdminChanged(indexed bytes32,indexed bytes32,indexed bytes32)
+          handler: handleRoleAdminChanged
+        - event: RoleGranted(indexed bytes32,indexed address,indexed address)
+          handler: handleRoleGranted
+        - event: RoleRevoked(indexed bytes32,indexed address,indexed address)
+          handler: handleRoleRevoked
+        - event: TimeStampCancelled(address,uint256)
+          handler: handleTimeStampCancelled
+        - event: Unpaused(address)
+          handler: handleUnpaused
+        - event: UpdateStatus(indexed uint32,indexed uint64,uint8)
+          handler: handleUpdateStatus
+      file: ./src/xy-3.ts
