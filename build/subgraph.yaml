@@ -1,6 +1,6 @@
 specVersion: 0.0.5
 schema:
-  file: ./schema.graphql
+  file: schema.graphql
 dataSources:
   - kind: ethereum
     name: XY3
@@ -17,8 +17,9 @@ dataSources:
         - LoanStarted
       abis:
         - name: XY3
-          file: ./abis/XY3.json
+          file: XY3/abis/XY3.json
       eventHandlers:
-        - event: LoanStarted(indexed uint32,indexed address,indexed address,uint256,(uint256,uint256,uint256,address,uint32,uint16,uint64,address,address,bool))
+        - event: LoanStarted(indexed uint32,indexed address,indexed
+            address,uint256,(uint256,uint256,uint256,address,uint32,uint16,uint64,address,address,bool))
           handler: handleLoanStarted
-      file: ./src/xy-3.ts
+      file: XY3/XY3.wasm
